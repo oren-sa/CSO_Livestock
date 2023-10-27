@@ -7,5 +7,7 @@ This folder contains ACLED event data, including a filtered dataset (filtered fo
 
 The R script used to explore and filter the data is likewise within the folder.
 
+<b>Landcover </b> <br>
+This is a product derived from ESA/VITO's 10m Worldcover V200 product. It has been resampled to 100m to reduce the size of the files. Included in the drive are a style files for QGIS (QML), ESRI (LYR) and GeoServer/Mapserver (.SLD).
 
 <b>Transhumance </b> <br>
