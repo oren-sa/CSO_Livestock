@@ -3,28 +3,13 @@ library(sf)
 library(stringr)
 
 list.files()
-acled_all<-read.csv("East_Africa_ACLED_WHOLE.csv")
+acled_all<-read.csv("East_Africa_ACLED_WHOLE.csv") #Path to your ACLED dataset here
 aoi<- st_as_sf(readOGR("AOI.gpkg"))
 
-unique(acled_all$country)
-
-colnames(acled_all)
-colnames(acled)
 #reduce to AOI
 acled <- st_as_sf(acled_all, coords = c("longitude", "latitude"))
 acled <- st_set_crs(acled,4326)
 acled <- st_intersection(acled, aoi)
-
-#acled<- merge (acled, acled_all[ , c("longitude","latitude")], by = "event_id_cnty")
-#acled$FID <- seq_along(acled$FID)
-
-#reattach lat/lon (they get lost in the st_as_sf)
-
-#write.csv(acled,"acled_aoi_unfiltered.csv")
-
-#acled<- subset(acled, acled$year > 2010)
-
-unique(acled$actor1)
 
 acled$notes<- toupper(acled$notes)
 acled$actor1<-toupper(acled$actor1)
@@ -41,8 +26,10 @@ acled_filter<- subset(acled, grepl(paste(patterns, collapse='|'), acled$notes) |
 acled_filter <- st_as_sf(acled_filter, coords = "geometry")
 acled_filter <- st_set_crs(acled_filter,4326)    
 
+#visualize the differences between filtered data and unfiltered data
 hist(acled_filter$year)
-hist(acled$year)                                 
+hist(acled$year)
+                                 
 write.csv(acled_filter,"acled_filtered.csv")
 st_write(acled_filter,"acled_filtered.gpkg", driver="GPKG")
-#writeOGR(acled_filter,"acled_filtered", driver="GPKG")
+
