@@ -11,3 +11,4 @@ The R script used to explore and filter the data is likewise within the folder.
 This is a product derived from ESA/VITO's 10m Worldcover V200 product. It has been resampled to 100m to reduce the size of the files. Included in the drive are a style files for QGIS (QML), ESRI (LYR) and GeoServer/Mapserver (.SLD).
 
 <b>Transhumance </b> <br>
+This folder contains a geojson and geopackage of the transhumance route data, sourced from ILRI's participatory research. The "Class" column indicates the type of road. Styling should be based on this column. It may be preferable to exclude non-functional rotues from any visualization.
